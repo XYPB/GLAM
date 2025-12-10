@@ -23,7 +23,7 @@ This is the official implementation of paper **GLAM**: *"Geometry-Guided Local A
     - [C. VinDr-Mammo dataset](#c-vindr-mammo-dataset)
     - [D. Define your data folder](#d-define-your-data-folder)
 - [Pre-trained Checkpoint](#pre-trained-checkpoint)
-- [Pre-training:](#pre-training)
+- [Pre-training](#pre-training)
 - [Zero-shot Evaluation](#zero-shot-evaluation)
 - [Linear-Probing and Full Fine-tuning](#linear-probing-and-full-fine-tuning)
 - [Reference](#reference)
@@ -100,7 +100,7 @@ Besides, you also need to use your own Huggingface API token to access and downl
 
 **NOTE**: You may encounter a potential error when using gradient checkpoint with LLMs implemented by Huggingface. To solve this, you need to add `use_reentrant=True` to the `gradient_checkpoint` function in the source code. You may also refer to [this issue](https://github.com/huggingface/transformers/issues/28536).
 
-### Pre-training:
+### Pre-training
 
 We use `wandb` to log our experiment results, so you may want to configure your `wandb` first before reproduce the results.
 
