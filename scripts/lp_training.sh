@@ -1,0 +1,213 @@
+#!/bin/bash
+
+export PRETRAINED_MODEL="<path-to-your-pretrained-model-ckpt>"
+
+# Fine-tuning on various datasets using pretrained GLAM model using linear probing
+
+# Fine-tuning on original EMBED dataset for BI-RADS classification
+python train.py  \
+    --batch_size 48 \
+    --learning_rate 5e-4 \
+    --experiment_name bert_simclr_screen_aligned_word_aug_text_align_side_patch_s_no_pool_same_pos_attn_ft_orig \
+    --devices 2 \
+    --strategy 'ddp_find_unused_parameters_true' \
+    --precision bf16-mixed \
+    --weight_decay 1e-3 \
+    --warm_up 1000 \
+    --emb_dim 512 \
+    --max_steps 8000 \
+    --linear_proj \
+    --embed \
+    --structural_cap \
+    --vit_grad_ckpt \
+    --slip \
+    --inter_view \
+    --img_size 518 \
+    --crop_size 518 \
+    --raw_caption \
+    --load_jpg \
+    --screen_only \
+    --aligned_mlo \
+    --align_orientation \
+    --remove_text \
+    --fixed_view \
+    --patch_contrast \
+    --mega_patch_size 4 \
+    --mega_patch_stride 4 \
+    --same_pos_contrast \
+    --attn_pooler \
+    --num_freeze_blocks 0 \
+    --sgd \
+    --min_lr 1e-5 \
+    --pretrained_encoder $PRETRAINED_MODEL \
+    --num_classes 7 \
+    --img_cls_ft \
+    --balance_training \
+    --balanced_test \
+    --freeze_vit
+
+# Fine-tuning on density prediction task on EMBED dataset for density classification
+python train.py  \
+    --batch_size 48 \
+    --learning_rate 5e-4 \
+    --experiment_name bert_simclr_screen_aligned_word_aug_text_align_side_patch_s_no_pool_same_pos_attn_ft_orig_density \
+    --devices 2 \
+    --strategy 'ddp_find_unused_parameters_true' \
+    --precision bf16-mixed \
+    --weight_decay 1e-3 \
+    --warm_up 1000 \
+    --emb_dim 512 \
+    --max_steps 8000 \
+    --linear_proj \
+    --embed \
+    --structural_cap \
+    --vit_grad_ckpt \
+    --slip \
+    --inter_view \
+    --img_size 518 \
+    --crop_size 518 \
+    --raw_caption \
+    --load_jpg \
+    --screen_only \
+    --aligned_mlo \
+    --align_orientation \
+    --remove_text \
+    --fixed_view \
+    --patch_contrast \
+    --mega_patch_size 4 \
+    --mega_patch_stride 4 \
+    --same_pos_contrast \
+    --attn_pooler \
+    --num_freeze_blocks 0 \
+    --sgd \
+    --min_lr 1e-5 \
+    --pretrained_encoder $PRETRAINED_MODEL \
+    --num_classes 4 \
+    --img_cls_ft \
+    --balance_training \
+    --balanced_test \
+    --freeze_vit \
+    --pred_density
+
+
+# Fine-tuning on original RSNA Mammography dataset for cancer classification
+python train.py  \
+    --batch_size 48 \
+    --learning_rate 5e-4 \
+    --experiment_name bert_simclr_screen_aligned_word_aug_text_align_side_patch_s_no_pool_same_pos_attn_ft_orig_rsna \
+    --devices 2 \
+    --strategy 'ddp_find_unused_parameters_true' \
+    --precision bf16-mixed \
+    --weight_decay 1e-3 \
+    --warm_up 1000 \
+    --emb_dim 512 \
+    --max_steps 8000 \
+    --linear_proj \
+    --rsna_mammo \
+    --structural_cap \
+    --vit_grad_ckpt \
+    --slip \
+    --inter_view \
+    --img_size 518 \
+    --crop_size 518 \
+    --raw_caption \
+    --load_jpg \
+    --screen_only \
+    --aligned_mlo \
+    --align_orientation \
+    --remove_text \
+    --fixed_view \
+    --patch_contrast \
+    --mega_patch_size 4 \
+    --mega_patch_stride 4 \
+    --same_pos_contrast \
+    --attn_pooler \
+    --num_freeze_blocks 0 \
+    --sgd \
+    --min_lr 1e-5 \
+    --pretrained_encoder $PRETRAINED_MODEL \
+    --img_cls_ft \
+    --balance_training \
+    --freeze_vit
+
+
+# Fine-tuning on original VINDR-Mammo dataset for BI-RADS classification
+python train.py  \
+    --batch_size 48 \
+    --learning_rate 5e-4 \
+    --experiment_name bert_simclr_screen_aligned_word_aug_text_align_side_patch_s_no_pool_same_pos_attn_ft_orig_vindr \
+    --devices 2 \
+    --strategy 'ddp_find_unused_parameters_true' \
+    --precision bf16-mixed \
+    --weight_decay 1e-3 \
+    --warm_up 1000 \
+    --emb_dim 512 \
+    --max_steps 8000 \
+    --linear_proj \
+    --structural_cap \
+    --vit_grad_ckpt \
+    --slip \
+    --inter_view \
+    --img_size 518 \
+    --crop_size 518 \
+    --raw_caption \
+    --load_jpg \
+    --screen_only \
+    --aligned_mlo \
+    --align_orientation \
+    --remove_text \
+    --fixed_view \
+    --patch_contrast \
+    --mega_patch_size 4 \
+    --mega_patch_stride 4 \
+    --same_pos_contrast \
+    --attn_pooler \
+    --num_freeze_blocks 0 \
+    --sgd \
+    --min_lr 1e-5 \
+    --pretrained_encoder $PRETRAINED_MODEL \
+    --img_cls_ft \
+    --freeze_vit \
+    --vindr \
+    --asl
+
+# Fine-tuning on density prediction task on VINDR-Mammo dataset for density classification
+python train.py  \
+    --batch_size 48 \
+    --learning_rate 5e-4 \
+    --experiment_name bert_simclr_screen_aligned_word_aug_text_align_side_patch_s_no_pool_same_pos_attn_ft_orig_vindr_density \
+    --devices 2 \
+    --strategy 'ddp_find_unused_parameters_true' \
+    --precision bf16-mixed \
+    --weight_decay 1e-3 \
+    --warm_up 1000 \
+    --emb_dim 512 \
+    --max_steps 8000 \
+    --linear_proj \
+    --structural_cap \
+    --vit_grad_ckpt \
+    --slip \
+    --inter_view \
+    --img_size 518 \
+    --crop_size 518 \
+    --raw_caption \
+    --load_jpg \
+    --screen_only \
+    --aligned_mlo \
+    --align_orientation \
+    --remove_text \
+    --fixed_view \
+    --patch_contrast \
+    --mega_patch_size 4 \
+    --mega_patch_stride 4 \
+    --same_pos_contrast \
+    --attn_pooler \
+    --num_freeze_blocks 0 \
+    --sgd \
+    --min_lr 1e-5 \
+    --pretrained_encoder $PRETRAINED_MODEL \
+    --img_cls_ft \
+    --asl \
+    --freeze_vit \
+    --vindr \
+    --pred_density
