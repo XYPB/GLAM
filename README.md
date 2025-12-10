@@ -12,11 +12,10 @@ This is the official implementation of paper **GLAM**: *"Geometry-Guided Local A
 
 ## Table of Contents
 - [News](#news)
-- [Abstract:](#abstract)
+- [Abstract](#abstract)
 - [Reproducibility](#reproducibility)
-- [Environment:](#environment)
-- [Environment:](#environment-1)
-- [Dataset:](#dataset)
+- [Environment](#environment)
+- [Dataset](#dataset)
     - [A. EMBED](#a-embed)
     - [Data Split](#data-split)
     - [B. RSNA-Mammo dataset](#b-rsna-mammo-dataset)
@@ -34,16 +33,15 @@ This is the official implementation of paper **GLAM**: *"Geometry-Guided Local A
 - [Dec 2025] The code for GLAM is officially released!
 
 
-## Abstract:
+## Abstract
 
 > Mammography screening is an essential tool for early detection of breast cancer. The speed and accuracy of mammography interpretation have the potential to be improved with deep learning methods. However, the development of a foundation visual language model (VLM) is hindered by limited data and domain differences between natural and medical images. Existing mammography VLMs, adapted from natural images, often ignore domain-specific characteristics, such as multi-view relationships in mammography. Unlike radiologists who analyze both views together to process ipsilateral correspondence, current methods treat them as independent images or do not properly model the multi-view correspondence learning, losing critical geometric context and resulting in suboptimal prediction. We propose GLAM: Global and Local Alignment for Multi-view mammography for VLM pretraining using geometry guidance. By leveraging the prior knowledge about the multi-view imaging process of mammograms, our model learns local cross-view alignments and fine-grained local features through joint global and local, visual-visual, and visual-language contrastive learning. Pretrained on EMBED, one of the largest open mammography datasets, our model outperforms baselines across multiple datasets under different settings.
 
 
 ## Reproducibility
 
-### Environment:
 
-### Environment:
+### Environment
 
 We first prepare the environment with required packages, we use PyTorch 2.1.2 with CUDA 11.8 and pytorch-lightning 2.1+ for development as evaluation. We also use `xformers` for more efficient training and testing. You may install the environment with the following steps:
 
@@ -53,7 +51,7 @@ conda env create -f environment.yml
 pip install 'git+https://github.com/katsura-jp/pytorch-cosine-annealing-with-warmup'
 ```
 
-### Dataset:
+### Dataset
 
 #### A. EMBED
 
